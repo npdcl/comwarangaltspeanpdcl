@@ -1,0 +1,40 @@
+﻿@model FileClass
+@{
+    Layout = null;
+}
+
+<form asp-controller = "File" asp-action="Index" method ="post" enctype="multipart/form-data">
+    <input type = "file" name ="file"/>
+    <hr/>
+    <button type="submit"> upLoad</button>
+
+</form>
+@if (Model != null)
+{
+    <hr />
+    <table class= "table table-bordered table-striped" cellpadding="0" border="1">
+        <thead>
+            <tr>
+                <th> Sl</th>
+                <th>PDF Name</th>
+                <th>Displat Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(FileClass file in Model.file)
+            {
+                <tr>
+                    <td>@file.Fileid</td>
+                    <td>@file.name</td>
+                    <td>
+                        <a href="../file/Index?fileName=@file.name" style="margin-right:10px;">first</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<br/>
+<embed id="embPDF" src ="/files/@Model.name" style="width:100%;"/>
+
